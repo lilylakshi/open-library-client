@@ -1,4 +1,11 @@
 <div>
   <app-book></app-book>
-  <app-book></app-book>
+
+  <ul>
+    <li *ngFor="let book of books">
+      <h5>{{ book.title }}</h5>
+      {{ book.isbn }}
+      {{ book.author }}
+    </li>
+  </ul>
 </div>

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { BooksComponent } from './books-list/books-list.component';
 import { BookComponent } from './books-list/book-item/book-item.component';
+import { BookDetailComponent } from './books-list/book-detail/book-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
     BooksComponent,
-    BookComponent
+    BookComponent,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,
