@@ -8,7 +8,8 @@ import { Book } from './book.model';
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [
-    new Book(5, 'Death Masks', 'Jim Butcher')
+    new Book(5, 'Death Masks', 'Jim Butcher'), 
+    new Book(1, 'Snow Crash', 'Neal Stephenson')
   ];
 
   constructor() { }
