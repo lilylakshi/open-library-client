@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { BooksComponent } from './books/books.component';
-import { BookComponent } from './book/book.component';
+import { BookComponent } from './books/book/book.component';
 
 @NgModule({
   declarations: [
