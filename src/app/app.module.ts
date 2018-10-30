@@ -7,6 +7,8 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { BooksComponent } from './books-list/books-list.component';
 import { BookComponent } from './books-list/book-item/book-item.component';
 import { BookDetailComponent } from './books-list/book-detail/book-detail.component';
+import { BooksService } from './books-list/books.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { BookDetailComponent } from './books-list/book-detail/book-detail.compon
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule, 
+    HttpModule
   ],
-  providers: [],
+  providers: [BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
