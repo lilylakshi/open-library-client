@@ -29,6 +29,10 @@ export class BooksComponent implements OnInit {
     );
    }
 
+   onBookClicked(clickedBook: Book) {
+     console.log(clickedBook);
+   }
+
   ngOnInit() {
   }
 
