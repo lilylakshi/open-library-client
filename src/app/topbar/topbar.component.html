@@ -1,5 +1,6 @@
 <nav>
-  <a class="nav active" href="/books/">Books</a>
-  <a class="nav" href="/authors/">Authors</a>
-  <a class="nav" href="/faq/">FAQ</a>
+  <a class="nav" routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }" routerLink="/">Books</a>
+  <a class="nav" routerLinkActive="active" routerLink="/authors">Authors</a>
+  <a class="nav" routerLinkActive="active" routerLink="/faq">FAQ</a>
 </nav>
