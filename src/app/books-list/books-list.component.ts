@@ -15,14 +15,14 @@ export class BooksComponent implements OnInit {
     this.booksService.getBooks().subscribe(
       (res: Response) => {
         const data = res.json();
-        for(const book of data) {
-          this.books.push(
-            new Book(
-              book.isbn,
-              book.title,
-              book.author
-            )
+        for(const bookJson of data) {
+          const book = new Book(
+            bookJson.isbn,
+            bookJson.title,
+            bookJson.author
           );
+          this.books.push(book);
+          booksService.addBook(book);
         }
       }, 
       (err) => console.log(err)
