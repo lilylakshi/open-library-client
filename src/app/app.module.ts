@@ -11,6 +11,8 @@ import { BookDetailComponent } from './books-list/book-detail/book-detail.compon
 import { BooksService } from './books-list/books.service';
 import { HttpModule } from '@angular/http';
 import { FaqComponent } from './faq/faq.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 const appRouts: Routes = [
   {
@@ -24,6 +26,14 @@ const appRouts: Routes = [
   {
     path: 'books/:isbn',
     component: BookDetailComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'signin',
+    component: SigninComponent
   }
 ];
 
@@ -34,7 +44,9 @@ const appRouts: Routes = [
     BooksComponent,
     BookComponent,
     BookDetailComponent,
-    FaqComponent
+    FaqComponent,
+    RegisterComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +54,7 @@ const appRouts: Routes = [
     HttpModule,
     RouterModule.forRoot(appRouts)
   ],
-  providers: [BooksService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
