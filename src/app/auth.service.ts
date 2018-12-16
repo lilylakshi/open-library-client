@@ -8,6 +8,8 @@ export class AuthService {
 
   constructor(private http: Http) { }
 
+  private token_name = 'open-library-user';
+
   register(username: string, password: string) {
     var data = {
       "username": username,
@@ -18,7 +20,7 @@ export class AuthService {
     this.http.post('http://localhost:8080/api/auth/register/', data).subscribe(
       (res) => {
         console.log("Authentication successful!");
-        localStorage.setItem('open-library-user', res.json());
+        localStorage.setItem(this.token_name, res.json());
         console.log(res);
       },
       this.errorFunction
@@ -35,8 +37,7 @@ export class AuthService {
     this.http.post('http://localhost:8080/api/auth/signin/', data).subscribe(
       (res) => {
         console.log("Authentication successful!");
-        localStorage.setItem('open-library-user', JSON.stringify(res.json()));
-        console.log(res);
+        localStorage.setItem(this.token_name, JSON.stringify(res.json()));
       },
       this.errorFunction
     );
@@ -48,7 +49,15 @@ export class AuthService {
   };
 
   getToken() {
-    console.log(JSON.parse(localStorage.getItem('open-library-user')));
-    return JSON.parse(localStorage.getItem('open-library-user')).token;
+    const userObj = localStorage.getItem(this.token_name);
+    return userObj != null ? JSON.parse(localStorage.getItem(this.token_name)).token : null;
+  }
+
+  logout() {
+    localStorage.removeItem(this.token_name);
+  }
+
+  isLoggedIn() {
+    return this.getToken() != null;
   }
 }

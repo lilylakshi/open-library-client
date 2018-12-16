@@ -14,7 +14,7 @@ export class BookDetailComponent implements OnInit {
   constructor(private booksService: BooksService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.book = this.booksService.getBook(Number(this.route.snapshot.params['isbn']));
+    this.book = this.booksService.getBook(this.route.snapshot.params['isbn']);
   }
 
 }

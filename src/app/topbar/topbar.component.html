@@ -3,4 +3,9 @@
   [routerLinkActiveOptions]="{ exact: true }" routerLink="/">Books</a>
   <a class="nav" routerLinkActive="active" routerLink="/authors">Authors</a>
   <a class="nav" routerLinkActive="active" routerLink="/faq">FAQ</a>
+  <ng-template [ngIf]="!loggedIn">
+    <a class="nav" routerLinkActive="active" routerLink="/register">Register</a>
+    <a class="nav" routerLinkActive="active" routerLink="/signin">Log in</a>
+  </ng-template>
+  <a *ngIf="loggedIn" class="nav" (click)="logout()">Logout</a>
 </nav>
