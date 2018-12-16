@@ -6,8 +6,6 @@ import { Http, Response } from '@angular/http';
 })
 export class AuthService {
 
-  token: String = undefined;
-
   constructor(private http: Http) { }
 
   register(username: string, password: string) {
@@ -20,7 +18,7 @@ export class AuthService {
     this.http.post('http://localhost:8080/api/auth/register/', data).subscribe(
       (res) => {
         console.log("Authentication successful!");
-        this.token = res.json().token;
+        localStorage.setItem('open-library-user', res.json());
         console.log(res);
       },
       this.errorFunction
@@ -37,7 +35,7 @@ export class AuthService {
     this.http.post('http://localhost:8080/api/auth/signin/', data).subscribe(
       (res) => {
         console.log("Authentication successful!");
-        this.token = res.json().token;
+        localStorage.setItem('open-library-user', JSON.stringify(res.json()));
         console.log(res);
       },
       this.errorFunction
@@ -48,4 +46,9 @@ export class AuthService {
     console.log("Error occurred while creating new user.")
     console.log(err);
   };
+
+  getToken() {
+    console.log(JSON.parse(localStorage.getItem('open-library-user')));
+    return JSON.parse(localStorage.getItem('open-library-user')).token;
+  }
 }

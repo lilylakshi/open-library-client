@@ -15,7 +15,7 @@ export class BooksService {
     }
 
     getBooks() {
-        const headers = new Headers({ "x-access-token": this.authService.token });
+        const headers = new Headers({ "x-access-token": this.authService.getToken() });
         return this.http.get('http://localhost:8080/api/book/', { headers: headers });
     }
 
