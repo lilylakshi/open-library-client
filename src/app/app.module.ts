@@ -8,16 +8,19 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { BooksComponent } from './books-list/books-list.component';
 import { BookComponent } from './books-list/book-item/book-item.component';
 import { BookDetailComponent } from './books-list/book-detail/book-detail.component';
-import { BooksService } from './books-list/books.service';
 import { HttpModule } from '@angular/http';
 import { FaqComponent } from './faq/faq.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { AuthGuard } from './_guards/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 const appRouts: Routes = [
   {
     path: '',
-    component: BooksComponent
+    component: BooksComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'faq',
@@ -25,7 +28,8 @@ const appRouts: Routes = [
   },
   {
     path: 'books/:isbn',
-    component: BookDetailComponent
+    component: BookDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -54,7 +58,9 @@ const appRouts: Routes = [
     HttpModule,
     RouterModule.forRoot(appRouts)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

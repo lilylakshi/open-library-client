@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class AuthService {
     );
   }
 
-  signin(username: string, password: string) {
+  signin(username: string, password: string, router: Router) {
     var data = {
       "username": username,
       "password": password,
@@ -38,6 +39,7 @@ export class AuthService {
       (res) => {
         console.log("Authentication successful!");
         localStorage.setItem(this.token_name, JSON.stringify(res.json()));
+        router.navigate(['']);
       },
       this.errorFunction
     );
