@@ -12,22 +12,9 @@ export class BooksComponent implements OnInit {
   books: Book[] = [];
 
   constructor(private booksService: BooksService) {
-    this.booksService.getBooks().subscribe(
-      (res: Response) => {
-        const data = res.json();
-        for(const bookJson of data) {
-          const book = new Book(
-            bookJson.isbn,
-            bookJson.title,
-            bookJson.author,
-            bookJson.quantity
-          );
-          this.books.push(book);
-          booksService.addBook(book);
-        }
-      }, 
-      (err) => console.log(err)
-    );
+    this.booksService.getBooks((book: Book) => {
+      this.books.push(book);
+    });
    }
 
    onBookClicked(clickedBook: Book) {
