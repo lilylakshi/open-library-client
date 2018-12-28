@@ -26,4 +26,18 @@ export class BooksService {
     getBook(isbn: number) {
         return this.books.get(isbn);
     }
+
+    createBook(book: Book) {
+        const headers = new Headers({ "x-access-token": this.authService.getToken() });
+
+        this.http.post('http://localhost:8080/api/book', book, { headers: headers }).subscribe(
+        (res) => {
+            console.log("Book creation successful!");
+            console.log(res);
+        },
+        (err) => {
+            console.log("Book creation failed");
+            console.log(err);
+        });
+    }
 }

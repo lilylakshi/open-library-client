@@ -19,7 +19,8 @@ export class BooksComponent implements OnInit {
           const book = new Book(
             bookJson.isbn,
             bookJson.title,
-            bookJson.author
+            bookJson.author,
+            bookJson.quantity
           );
           this.books.push(book);
           booksService.addBook(book);

@@ -15,6 +15,7 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 const appRouts: Routes = [
   {
@@ -50,7 +51,8 @@ const appRouts: Routes = [
     BookDetailComponent,
     FaqComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    CreateBookComponent
   ],
   imports: [
     BrowserModule,

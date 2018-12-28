@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <label for="title">Title</label>
+  <input ngModel type="text" name="title" id="title" />
+  <label for="author">author</label>
+  <input ngModel type="text" name="author" id="author" />
+  <label for="isbn">ISBN</label>
+  <input ngModel type="text" name="isbn" id="isbn" />
+  <label for="desc">Description</label>
+  <input ngModel type="text" name="desc" id="desc" />
+  <label for="quantity">Quantity</label>
+  <input ngModel type="number" name="quantity" id="quantity" />
+  <label for="frontCover">URL for Front Cover</label>
+  <input ngModel type="text" name="frontCover" id="frontCover" />
+  <label for="backCover">URL for Back Cover</label>
+  <input ngModel type="text" name="backCover" id="backCover" />
+  <label for="lang">Language</label>
+  <input ngModel type="text" name="lang" id="lang" />
+  <button type="submit">Create</button>
+</form>
