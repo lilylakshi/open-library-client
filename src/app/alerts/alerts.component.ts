@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../_services/alert.service';
-import { Alert } from '../_models/alert';
+import { Alert, AlertType } from '../_models/alert';
 
 @Component({
   selector: 'app-alerts',
@@ -25,5 +25,22 @@ export class AlertsComponent implements OnInit {
         this.alerts = [];
       }
     });
+  }
+
+  getCssClass(alert: Alert) {
+    if (!alert) {
+        return;
+    }
+
+    switch (alert.type) {
+      case AlertType.Success:
+        return 'alert-success';
+      case AlertType.Error:
+        return 'alert-danger';
+      case AlertType.Info:
+        return 'alert-info';
+      case AlertType.Warning:
+        return 'alert-warning';
+    }
   }
 }

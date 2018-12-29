@@ -11,11 +11,12 @@ export class TopbarComponent implements OnInit {
 
     loggedIn: boolean = false;
 
-    constructor(private authService: AuthService, private router: Router) {}
-
-    ngOnInit() {
+    constructor(private authService: AuthService, private router: Router) {
         this.loggedIn = this.authService.isLoggedIn();
+        this.authService.getLogoutSubject().subscribe(state => this.loggedIn = state);
     }
+
+    ngOnInit() { }
 
     logout() {
         this.authService.logout();

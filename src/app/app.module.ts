@@ -40,6 +40,10 @@ const appRoutes: Routes = [
   {
     path: 'signin',
     component: SigninComponent
+  },
+  {
+    path: 'new-book',
+    component: CreateBookComponent
   }
 ];
 

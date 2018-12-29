@@ -16,7 +16,8 @@ export class BooksService {
 
     constructor(private http: Http, 
         private authService: AuthService, 
-        private alertService: AlertService) {
+        private alertService: AlertService,
+        private router: Router) {
         this.books = new Map<number, Book>();
         this.subject = new Subject<Book>();
     }
@@ -77,7 +78,7 @@ export class BooksService {
         (res) => {
             this.alertService.success("Book created!");
             this.reloadBooks();
-            console.log(res);
+            this.router.navigate(['']);
         },
         (err) => {
             this.alertService.error("Error occurred while creating the book");

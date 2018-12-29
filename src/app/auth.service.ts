@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AlertService } from './_services/alert.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  loginStateSubject: Subject<boolean> = new Subject();
 
   constructor(private http: Http, private alertService: AlertService) { }
 
@@ -21,8 +24,9 @@ export class AuthService {
     }
     this.http.post('http://localhost:8080/api/auth/register/', data).subscribe(
       (res) => {
-        console.log("Authentication successful!");
-        localStorage.setItem(this.token_name, res.json());
+        this.alertService.success("User created!");
+        localStorage.setItem(this.token_name, JSON.stringify(res.json()));
+        this.loginStateSubject.next(true);
         console.log(res);
       },
       this.errorFunction
@@ -38,9 +42,9 @@ export class AuthService {
     }
     this.http.post('http://localhost:8080/api/auth/signin/', data).subscribe(
       (res) => {
-        console.log("Authentication successful!");
         localStorage.setItem(this.token_name, JSON.stringify(res.json()));
         this.alertService.success("Login successful!");
+        this.loginStateSubject.next(true);
         router.navigate(['']);
       },
       this.errorFunction
@@ -60,9 +64,14 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.token_name);
+    this.loginStateSubject.next(false);
   }
 
   isLoggedIn() {
     return this.getToken() != null;
+  }
+
+  getLogoutSubject() {
+    return this.loginStateSubject.asObservable();
   }
 }

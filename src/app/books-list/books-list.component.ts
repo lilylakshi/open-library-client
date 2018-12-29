@@ -17,10 +17,6 @@ export class BooksComponent implements OnInit {
     this.books = new Map<number, Book>(); 
   }
 
-   onBookClicked(clickedBook: Book) {
-     console.log(clickedBook);
-   }
-
   ngOnInit() {
     this.booksService.reloadBooks();
     this.booksService.getBooksSubject().subscribe((book: Book) => {

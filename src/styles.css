@@ -6,3 +6,7 @@ body {
 div {
     text-align: left;
 }
+
+.max-height-540 {
+    max-height: 540px;
+}
