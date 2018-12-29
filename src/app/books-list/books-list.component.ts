@@ -9,19 +9,27 @@ import { Response } from '@angular/http';
   styleUrls: ['./books-list.component.css']
 })
 export class BooksComponent implements OnInit {
-  books: Book[] = [];
+
+  private books: Map<number, Book>;
+  private booksArr: Book[];
 
   constructor(private booksService: BooksService) {
-    this.booksService.getBooks((book: Book) => {
-      this.books.push(book);
-    });
-   }
+    this.books = new Map<number, Book>(); 
+  }
 
    onBookClicked(clickedBook: Book) {
      console.log(clickedBook);
    }
 
   ngOnInit() {
+    this.booksService.reloadBooks();
+    this.booksService.getBooksSubject().subscribe((book: Book) => {
+      this.books.set(book.isbn, book);
+      this.booksArr = [];
+      this.books.forEach((v) => {
+        this.booksArr.push(v);
+      });
+    });
   }
 
 }

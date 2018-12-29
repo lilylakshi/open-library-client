@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
+import { AlertService } from './_services/alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private alertService: AlertService) { }
 
   private token_name = 'open-library-user';
 
@@ -39,6 +40,7 @@ export class AuthService {
       (res) => {
         console.log("Authentication successful!");
         localStorage.setItem(this.token_name, JSON.stringify(res.json()));
+        this.alertService.success("Login successful!");
         router.navigate(['']);
       },
       this.errorFunction
@@ -48,6 +50,7 @@ export class AuthService {
   errorFunction = function(err) {
     console.log("Error occurred while creating new user.")
     console.log(err);
+    this.alertService.err("An error occurred");
   };
 
   getToken() {

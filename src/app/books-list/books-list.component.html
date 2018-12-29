@@ -1,4 +1,4 @@
 <div>
   <app-create-book></app-create-book>
-  <app-book *ngFor="let book of books" [book]="book" (onBookClicked)="onBookClicked($event)" ></app-book>
+  <app-book *ngFor="let book of booksArr" [book]="book" (onBookClicked)="onBookClicked($event)" ></app-book>
 </div>

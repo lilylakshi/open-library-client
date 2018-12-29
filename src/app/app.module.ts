@@ -16,8 +16,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { AlertsComponent } from './alerts/alerts.component';
 
-const appRouts: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
     component: BooksComponent,
@@ -52,13 +53,14 @@ const appRouts: Routes = [
     FaqComponent,
     RegisterComponent,
     SigninComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule, 
     HttpModule,
-    RouterModule.forRoot(appRouts)
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
