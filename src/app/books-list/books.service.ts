@@ -62,7 +62,18 @@ export class BooksService {
     createBook(book: Book) {
         const headers = new Headers({ "x-access-token": this.authService.getToken() });
 
-        this.http.post('http://localhost:8080/api/book', book, { headers: headers }).subscribe(
+        const reqBody = {
+            isbn: book.isbn,
+            title: book.title,
+            description: book.desc,
+            author: book.author,
+            quantity: book.quantity,
+            frontCover: book.frontCover,
+            backCover: book.backCover,
+            language: book.lang
+        }
+
+        this.http.post('http://localhost:8080/api/book', reqBody, { headers: headers }).subscribe(
         (res) => {
             this.alertService.success("Book created!");
             this.reloadBooks();
