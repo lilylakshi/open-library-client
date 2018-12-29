@@ -35,10 +35,10 @@ export class BooksService {
                   bookJson.author,
                   bookJson.quantity
                 );
-                book.desc = bookJson.desc;
+                book.desc = bookJson.description;
                 book.frontCover = bookJson.frontCover;
                 book.backCover = bookJson.backCover;
-                book.lang = bookJson.lang;
+                book.lang = bookJson.language;
                 this.addBook(book);
               }
             }, 
