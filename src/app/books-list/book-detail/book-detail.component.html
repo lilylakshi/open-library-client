@@ -2,7 +2,7 @@
     <div class="d-flex w-100">
         <h2 class="mr-2">{{ book.title }}</h2>
         <div class="my-auto">
-            <small class="text-muted">{{ book.quantity }} {{ book.quantity == 1 ? "copy" : "copies" }} available</small>
+            <small class="text-muted">{{ book.quantity | i18nPlural: messageMapping }} available</small>
         </div>
     </div>
     <small class="text-muted">ISBN {{ book.isbn }}</small>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { I18nPluralPipe } from '@angular/common';
 import { Book } from '../book.model';
 import { BooksService } from '../books.service';
 
@@ -10,6 +11,8 @@ import { BooksService } from '../books.service';
 })
 export class BookDetailComponent implements OnInit {
   book: Book;
+
+  messageMapping: {[k: string]: string} = { '=0': 'No copies', '=1': '1 copy', 'other': '# copies' };
 
   constructor(private booksService: BooksService, private route: ActivatedRoute) { }
 
