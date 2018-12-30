@@ -17,6 +17,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { FilterFieldComponent } from './filter-field/filter-field.component';
+import { FilterPipe } from './_pipes/filter.pipe';
 
 const appRoutes: Routes = [
   {
@@ -58,7 +60,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     SigninComponent,
     CreateBookComponent,
-    AlertsComponent
+    AlertsComponent,
+    FilterFieldComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,9 @@
 <div class="container">
   <button class="btn btn-primary mt-3" routerLink="/new-book">Create Book</button>
-  <div class="list-group mt-3 mb-3">
+  <app-filter-field (text)="searchTextChanged($event)"></app-filter-field>
+  <div class="list-group mt-2 mb-3">
     <app-book class="list-group-item list-group-item-action flex-column align-items-start" 
-      *ngFor="let book of booksArr" [book]="book">
+      *ngFor="let book of booksArr | filter: searchText" [book]="book">
     </app-book>
   </div>
 </div>

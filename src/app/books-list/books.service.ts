@@ -12,14 +12,14 @@ import { Subject } from "rxjs";
 export class BooksService {
 
     private books: Map<number, Book>;
-    private subject: Subject<Book>;
+    private subject: Subject<Book[]>;
 
     constructor(private http: Http, 
         private authService: AuthService, 
         private alertService: AlertService,
         private router: Router) {
         this.books = new Map<number, Book>();
-        this.subject = new Subject<Book>();
+        this.subject = new Subject<Book[]>();
     }
 
     reloadBooks() {
@@ -29,6 +29,7 @@ export class BooksService {
         subscribe(
             (res: Response) => {
               const data = res.json();
+              const newBooks = [];
               for(const bookJson of data) {
                 const book = new Book(
                   bookJson.isbn,
@@ -40,16 +41,17 @@ export class BooksService {
                 book.frontCover = bookJson.frontCover;
                 book.backCover = bookJson.backCover;
                 book.lang = bookJson.language;
-                this.addBook(book);
+                newBooks.push(book);
               }
+              this.addNewBooks(newBooks);
             }, 
             (err) => console.log(err)
           );
     }
 
-    addBook(book: Book) {
-        this.books.set(book.isbn, book);
-        this.subject.next(book);
+    addNewBooks(books: Book[]) {
+        books.forEach((book: Book) => this.books.set(book.isbn, book));
+        this.subject.next(books);
     }
 
     getBook(isbn: number) {

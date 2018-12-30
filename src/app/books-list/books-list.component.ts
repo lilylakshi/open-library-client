@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from './book.model';
 import { BooksService } from './books.service';
-import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-books',
@@ -11,7 +10,8 @@ import { Response } from '@angular/http';
 export class BooksComponent implements OnInit {
 
   private books: Map<number, Book>;
-  private booksArr: Book[];
+  private booksArr: Book[] = [];
+  private searchText = '';
 
   constructor(private booksService: BooksService) {
     this.books = new Map<number, Book>(); 
@@ -19,13 +19,19 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.booksService.reloadBooks();
-    this.booksService.getBooksSubject().subscribe((book: Book) => {
-      this.books.set(book.isbn, book);
+    this.booksService.getBooksSubject().subscribe((newBooks: Book[]) => {
+      newBooks.forEach((newBook: Book) => {
+        this.books.set(newBook.isbn, newBook);
+      });
       this.booksArr = [];
-      this.books.forEach((v) => {
-        this.booksArr.push(v);
+
+      this.books.forEach((book: Book) => {
+        this.booksArr.push(book);
       });
     });
   }
 
+  searchTextChanged(text: string) {
+    this.searchText = text;
+  }
 }
