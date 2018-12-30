@@ -10,3 +10,7 @@ div {
 .max-height-540 {
     max-height: 540px;
 }
+
+.alert {
+    margin-bottom: 0px;
+}
